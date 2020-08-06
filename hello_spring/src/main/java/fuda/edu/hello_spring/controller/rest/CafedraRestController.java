@@ -5,6 +5,7 @@ import fuda.edu.hello_spring.service.cafedra.impls.CafedraServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -17,13 +18,12 @@ class CafedraRestController {
     @Autowired
     CafedraServiceImpl cafedraServiceImpl;
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     String getHello() {
-        return "<h1>Hello from Cafedra Controller</h1>d" +
-                "";
+        return "<h1>Hello from Cafedra Controller</h1>";
     }
 
-    @GetMapping("/cafedra/list")
+    @RequestMapping(value = "/cafedra/list", method = RequestMethod.GET)
     List getCafedrasList() {
         return cafedraServiceImpl.getAll();
     }

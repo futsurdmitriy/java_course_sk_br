@@ -14,11 +14,29 @@ public class Cafedra {
 
     public Cafedra(){}
 
-    public Cafedra(String id, String name, String chief) {
+    public Cafedra(String id, String name, String chief, String desc) {
         this.id = id;
         this.name = name;
         this.chief = chief;
+        this.desc = desc;
     }
+
+    public Cafedra(String name, String chief, String desc) {
+        this.name = name;
+        this.chief = chief;
+        this.desc = desc;
+    }
+
+    public Cafedra(String id, String name, String chief, String desc,
+                   LocalDateTime createdAt, LocalDateTime modified) {
+        this.id = id;
+        this.name = name;
+        this.chief = chief;
+        this.desc = desc;
+        this.createdAt = createdAt;
+        this.modified = modified;
+    }
+
 
     public String getId() {
         return id;
