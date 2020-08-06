@@ -1,0 +1,41 @@
+package fuda.edu.hello_spring.dao.cafedra.impls;
+
+import fuda.edu.hello_spring.dao.cafedra.interfaces.IDaoCafedra;
+import fuda.edu.hello_spring.datastorage.DataFake;
+import fuda.edu.hello_spring.model.Cafedra;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public class DaoCafedraImpl implements IDaoCafedra {
+
+    @Autowired
+    DataFake dataFake;
+
+    @Override
+    public Cafedra create(Cafedra cafedra) {
+        return null;
+    }
+
+    @Override
+    public Cafedra get(String id) {
+        return null;
+    }
+
+    @Override
+    public Cafedra update(Cafedra cafedra) {
+        return null;
+    }
+
+    @Override
+    public Cafedra delete(String id) {
+        return null;
+    }
+
+    @Override
+    public List getAll() {
+        return  dataFake.getCafedras();
+    }
+}
