@@ -9,6 +9,19 @@
  *
  * Description:
  *
+ */
+
+package fuda.edu;/*
+ * Class name :  fuda.edu.RectangularBox
+ *
+ * @author Dmitriy Futsur
+ *
+ * @version 1.0.0 07-Aug-2020
+ *
+ * Copyright (c) Dmitriy Futsur
+ *
+ * Description:
+ *
  * Test methods of figure from first task
  *
  */
@@ -109,7 +122,7 @@ public class RectangularBox {
      */
     @Override
     public String toString() {
-        return "RectangularBox{" +
+        return "fuda.edu.RectangularBox{" +
                 " length=" + length +
                 ", width=" + width +
                 ", height=" + height +

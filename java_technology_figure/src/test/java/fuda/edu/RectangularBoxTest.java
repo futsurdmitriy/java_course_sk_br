@@ -9,16 +9,30 @@
  *
  * Description:
  *
+ */
+
+package fuda.edu;/*
+ * Class name :  fuda.edu.RectangularBoxTest
+ *
+ * @author Dmitriy Futsur
+ *
+ * @version 1.0.0 07-Aug-2020
+ *
+ * Copyright (c) Dmitriy Futsur
+ *
+ * Description:
+ *
  * Test methods of figure from first task
  *
  */
 
+import fuda.edu.RectangularBox;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /*
- * Class to test RectangularBox logic
+ * Class to test fuda.edu.RectangularBox logic
  * @author Dmitriy Futsur
  * @version 1.0.0 07-Aug-2020
 * */
