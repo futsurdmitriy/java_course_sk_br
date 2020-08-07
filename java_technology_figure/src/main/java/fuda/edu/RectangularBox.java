@@ -26,6 +26,8 @@ package fuda.edu;/*
  *
  */
 
+import java.util.logging.Logger;
+
 public class RectangularBox {
 
     /**
@@ -42,6 +44,12 @@ public class RectangularBox {
      * Height of rectangularBox
      */
     private int height;
+
+    /**
+     * Logger to log method actions
+     */
+    private static final Logger LOGGER =
+            Logger.getLogger(RectangularBox.class.getName());
 
     /**
      * Constructor
@@ -151,6 +159,8 @@ public class RectangularBox {
      * @return Returns calculated squared diagonal length of rectangularBox.
      */
     public double calculateSquaredDiagonalLengthOfRectangularBox() {
+        LOGGER.info("Started calculateSquaredDiagonalLengthOfRectangularBox " +
+                "method");
         if (this.rectangleExists()) {
             return  (Math.pow(getLength(), 2) +
                     Math.pow(getHeight(), 2) +
@@ -169,6 +179,8 @@ public class RectangularBox {
      * @return Returns calculated diagonal length of rectangularBox.
      */
     public double calculateDiagonalLengthOfRectangularBox() {
+        LOGGER.info("Started calculateDiagonalLengthOfRectangularBox " +
+                "method");
         return Math.sqrt(this.calculateSquaredDiagonalLengthOfRectangularBox());
     }
 
@@ -179,6 +191,8 @@ public class RectangularBox {
      * @return Returns calculated surface area of rectangularBox.
      */
     public int calculateSurfaceArea() {
+        LOGGER.info("Started calculateSurfaceArea " +
+                "method");
         if (this.rectangleExists()) {
             return 2 * (getLength() * getWidth() +
                     getWidth() * getHeight() +
@@ -199,6 +213,8 @@ public class RectangularBox {
      * @return Returns calculated diagonal length of a rectangularBox surface.
      */
     public double calculateDiagonalOfARectangleBoxSurface() {
+        LOGGER.info("Started calculateDiagonalOfARectangleBoxSurface " +
+                "method");
         if (this.getHeight() != 0 && this.getLength() != 0) {
             return Math.sqrt(this.getHeight() * this.getLength());
         } else {
@@ -213,6 +229,8 @@ public class RectangularBox {
      * @return Returns volume of rectangularBox.
      */
     public int calculateVolumeOfRectangularBox() {
+        LOGGER.info("Started calculateVolumeOfRectangularBox " +
+                "method");
         if (this.rectangleExists()) {
             return this.getLength() * this.getHeight() * this.getWidth();
         } else {
