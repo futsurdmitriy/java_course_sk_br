@@ -3,10 +3,7 @@ package fuda.edu.hello_spring.controller.rest;
 import fuda.edu.hello_spring.model.Cafedra;
 import fuda.edu.hello_spring.service.cafedra.impls.CafedraServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -33,5 +30,9 @@ class CafedraRestController {
         return cafedraServiceImpl.getAll();
     }
 
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    Cafedra getCafedra(@PathVariable("id") String id) {
+        return cafedraServiceImpl.get(id);
+    }
 
 }

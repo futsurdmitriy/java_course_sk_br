@@ -1,12 +1,15 @@
 package fuda.edu.hello_spring.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+@Document
 public class Cafedra {
-
+    @Id
     private String id;
     private String name;
     private String chief;
@@ -39,6 +42,29 @@ public class Cafedra {
         this.modified = modified;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public String getId() {
         return id;
