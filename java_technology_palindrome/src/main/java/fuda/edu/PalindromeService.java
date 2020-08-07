@@ -18,6 +18,8 @@
 
 package fuda.edu;
 
+import java.util.logging.Logger;
+
 /**
  * Class to process string and define whether it palindrome or not
  * @author Dmitriy Futsur
@@ -35,6 +37,12 @@ public class PalindromeService {
      * alphabetic and cyrillic symbols
      */
     private static final String regex = "[^a-zA-Zа-яА-Я]";
+
+    /**
+     * Logger to log method actions
+     */
+    private static final Logger LOGGER =
+            Logger.getLogger(PalindromeService.class.getName());
 
     /**
      * Getter for string to check
@@ -68,6 +76,7 @@ public class PalindromeService {
      * Method to convert string to lower case
      */
     private void toLowerCase() {
+        LOGGER.info("Started toLowerCase method");
         this.setString(this.string.toLowerCase());
     }
 
@@ -75,6 +84,7 @@ public class PalindromeService {
      * Method to get formatted string free from symbols and spaces
      */
     private void getCleanedString(){
+        LOGGER.info("Started getCleanedString method");
         this.setString(this.string.replaceAll(regex, ""));
     }
 
@@ -83,6 +93,7 @@ public class PalindromeService {
      * @return Returns reversed string
      */
     private String getReversed(){
+        LOGGER.info("Started getReversed method");
         return new StringBuilder (string).reverse().toString();
     }
 
@@ -93,6 +104,7 @@ public class PalindromeService {
      * null if string is undefined
      */
     public static Boolean isValid(String string) {
+        LOGGER.info("Started isValid method");
         if (string == null) return null;
         PalindromeService palindromeService = new PalindromeService(string);
         palindromeService.toLowerCase();
