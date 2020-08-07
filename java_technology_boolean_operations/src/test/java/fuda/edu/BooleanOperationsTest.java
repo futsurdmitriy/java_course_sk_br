@@ -10,7 +10,6 @@
 package fuda.edu;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
@@ -126,21 +125,21 @@ public class BooleanOperationsTest {
     @Test
     public void whenFirstTrueSecondTrueDisjunctionTrue() {
         assertEquals(true,
-                result = new BooleanOperations(true, true).conjunction()
+                result = new BooleanOperations(true, true).disjunction()
         );
     }
 
     @Test
     public void whenFirstTrueSecondFalseDisjunctionTrue() {
         assertEquals(true,
-                result = new BooleanOperations(true, false).conjunction()
+                result = new BooleanOperations(true, false).disjunction()
         );
     }
 
     @Test
     public void whenFirstTrueSecondNullDisjunctionTrue() {
         assertEquals(true,
-                result = new BooleanOperations(true, null).conjunction()
+                result = new BooleanOperations(true, null).disjunction()
         );
     }
 
@@ -149,21 +148,21 @@ public class BooleanOperationsTest {
     @Test
     public void whenFirstFalseSecondTrueDisjunctionTrue() {
         assertEquals(true,
-                result = new BooleanOperations(false, true).conjunction()
+                result = new BooleanOperations(false, true).disjunction()
         );
     }
 
     @Test
     public void whenFirstFalseSecondFalseDisjunctionFalse() {
         assertEquals(false,
-                result = new BooleanOperations(false, false).conjunction()
+                result = new BooleanOperations(false, false).disjunction()
         );
     }
 
     @Test
     public void whenFirstFalseSecondNullDisjunctionFalse() {
         assertEquals(false,
-                result = new BooleanOperations(false, null).conjunction()
+                result = new BooleanOperations(false, null).disjunction()
         );
     }
 
@@ -172,21 +171,21 @@ public class BooleanOperationsTest {
     @Test
     public void whenFirstNullSecondTrueDisjunctionTrue() {
         assertEquals(true,
-                result = new BooleanOperations(null, true).conjunction()
+                result = new BooleanOperations(null, true).disjunction()
         );
     }
 
     @Test
     public void whenFirstNullSecondFalseDisjunctionFalse() {
         assertEquals(false,
-                result = new BooleanOperations(null, false).conjunction()
+                result = new BooleanOperations(null, false).disjunction()
         );
     }
 
     @Test
     public void whenFirstNullSecondNullDisjunctionNull() {
         assertEquals(null,
-                result = new BooleanOperations(null, null).conjunction()
+                result = new BooleanOperations(null, null).disjunction()
         );
     }
 

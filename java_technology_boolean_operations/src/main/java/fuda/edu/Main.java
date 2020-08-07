@@ -11,13 +11,13 @@
 package fuda.edu;
 
 /**
- *
+ * Main class
  */
 public class Main {
 
     /**
-     *
-     * @param args
+     * Main method
+     * @param args Default main arguments
      */
     public static void main(String[] args) {
         System.out.println("Hello");
