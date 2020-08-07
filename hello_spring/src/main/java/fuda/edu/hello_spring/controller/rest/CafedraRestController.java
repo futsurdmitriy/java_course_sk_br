@@ -12,8 +12,13 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+@RequestMapping("/api/cafedra")
 @RestController
 class CafedraRestController {
+
+    public CafedraRestController(CafedraServiceImpl cafedraServiceImpl) {
+        this.cafedraServiceImpl = cafedraServiceImpl;
+    }
 
     @Autowired
     CafedraServiceImpl cafedraServiceImpl;
@@ -23,7 +28,7 @@ class CafedraRestController {
         return "<h1>Hello from Cafedra Controller</h1>";
     }
 
-    @RequestMapping(value = "/cafedra/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     List getCafedrasList() {
         return cafedraServiceImpl.getAll();
     }
