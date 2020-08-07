@@ -3,6 +3,7 @@ package fuda.edu.hello_spring.datastorage;
 import fuda.edu.hello_spring.model.Cafedra;
 import fuda.edu.hello_spring.model.Group;
 import fuda.edu.hello_spring.repository.CafedraRepository;
+import fuda.edu.hello_spring.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,8 @@ public class DataFake {
 
     @Autowired
     CafedraRepository cafedraRepository;
+    @Autowired
+    GroupRepository groupRepository;
 
    /* List<Cafedra> cafedras = new LinkedList<>(Arrays.asList(
             new Cafedra("1","IPZ", "Ivanov", "Engineering"),
@@ -29,10 +32,13 @@ public class DataFake {
             new Cafedra("IT", "Pshek", "VoitiVIT")
     ));
 
-    /*@PostConstruct
+    @PostConstruct
     private void init(){
+        cafedraRepository.deleteAll();
         cafedraRepository.saveAll(cafedras);
-    }*/
+        groupRepository.deleteAll();
+        groupRepository.saveAll(groups);
+    }
 
     List<Group> groups = new LinkedList<>(Arrays.asList(
             new Group("1","543", "Chernovtsy", cafedras.get(0)),
