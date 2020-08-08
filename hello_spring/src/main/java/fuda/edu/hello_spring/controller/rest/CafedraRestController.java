@@ -20,6 +20,11 @@ class CafedraRestController {
     @Autowired
     CafedraServiceImpl cafedraServiceImpl;
 
+    @RequestMapping("")
+    String getIndex(){
+        return "<h1>Index Web Controller</h1>";
+    }
+
     @GetMapping("/hello")
     String getHello() {
         return "<h1>Hello from Cafedra Controller</h1>";
