@@ -13,17 +13,17 @@ import java.util.List;
 @RestController
 class CafedraRestController {
 
-    public CafedraRestController(CafedraServiceImpl cafedraServiceImpl) {
+   /* public CafedraRestController(CafedraServiceImpl cafedraServiceImpl) {
         this.cafedraServiceImpl = cafedraServiceImpl;
-    }
+    }*/
 
     @Autowired
     CafedraServiceImpl cafedraServiceImpl;
 
-    @RequestMapping("")
-    String getIndex(){
-        return "<h1>Index Web Controller</h1>";
-    }
+//    @RequestMapping("")
+//    String getIndex() {
+//        return "<h1>Index Web Controller</h1>";
+//    }
 
     @GetMapping("/hello")
     String getHello() {
@@ -31,7 +31,7 @@ class CafedraRestController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    List getCafedrasList() {
+    List<Cafedra> getCafedrasList() {
         return cafedraServiceImpl.getAll();
     }
 

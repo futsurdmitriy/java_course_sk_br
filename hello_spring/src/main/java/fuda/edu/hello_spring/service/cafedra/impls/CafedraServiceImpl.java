@@ -1,13 +1,17 @@
 package fuda.edu.hello_spring.service.cafedra.impls;
 
 import fuda.edu.hello_spring.dao.cafedra.impls.DaoCafedraImpl;
+import fuda.edu.hello_spring.datastorage.DataFake;
 import fuda.edu.hello_spring.model.Cafedra;
 import fuda.edu.hello_spring.repository.CafedraRepository;
+import fuda.edu.hello_spring.repository.GroupRepository;
 import fuda.edu.hello_spring.service.cafedra.interfaces.ICafedraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -17,7 +21,13 @@ public class CafedraServiceImpl implements ICafedraService {
 //    DaoCafedraImpl daoCafedra;
 
     @Autowired
+    DataFake dataFake;
+
+    @Autowired
     CafedraRepository cafedraRepository;
+
+  /*  @Autowired
+    GroupRepository groupRepository;*/
 
     @Override
     public Cafedra create(Cafedra cafedra) {
@@ -44,7 +54,15 @@ public class CafedraServiceImpl implements ICafedraService {
     }
 
     @Override
-    public List getAll() {
+    public List<Cafedra> getAll() {
         return cafedraRepository.findAll();
+    }
+
+
+    public void refresh() {
+        cafedraRepository.deleteAll();
+        cafedraRepository.saveAll(dataFake.getCafedras());
+        /*groupRepository.deleteAll();
+        groupRepository.saveAll(dataFake.getGroups());*/
     }
 }

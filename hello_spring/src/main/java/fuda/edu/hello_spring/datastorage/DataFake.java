@@ -32,13 +32,13 @@ public class DataFake {
             new Cafedra("IT", "Pshek", "VoitiVIT")
     ));
 
-    @PostConstruct
-    private void init(){
-        cafedraRepository.deleteAll();
-        cafedraRepository.saveAll(cafedras);
-        groupRepository.deleteAll();
-        groupRepository.saveAll(groups);
-    }
+//    @PostConstruct
+//    private void init(){
+//        cafedraRepository.deleteAll();
+//        cafedraRepository.saveAll(cafedras);
+//        groupRepository.deleteAll();
+//        groupRepository.saveAll(groups);
+//    }
 
     List<Group> groups = new LinkedList<>(Arrays.asList(
             new Group("1","543", "Chernovtsy", cafedras.get(0)),
