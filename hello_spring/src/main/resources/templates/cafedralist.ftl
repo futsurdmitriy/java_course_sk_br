@@ -54,12 +54,14 @@
         </form>-->
         <table class="table table-striped table-dark">
             <tr>
+                <th>Number</th>
                 <th>Name</th>
                 <th>Description </th>
                 <th>Chief</th>
             </tr>
             <#list list as item>
                 <tr>
+                    <td>${item?counter}</td>
                     <td>${item.name}</td>
                     <td>${item.desc}</td>
                     <td>${item.chief}</td>

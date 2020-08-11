@@ -2,11 +2,13 @@ package fuda.edu.hello_spring.controller.web;
 
 import fuda.edu.hello_spring.datastorage.DataFake;
 import fuda.edu.hello_spring.form.CafedraForm;
+import fuda.edu.hello_spring.model.Cafedra;
 import fuda.edu.hello_spring.service.cafedra.impls.CafedraServiceImpl;
 import fuda.edu.hello_spring.service.cafedra.interfaces.ICafedraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +23,7 @@ public class CafedraWebController {
     DataFake dataFake;
 
     @RequestMapping("/list")
-    String showAll(Model model){
+    String showAll(Model model) {
         model.addAttribute("list", cafedraService.getAll());
 
 
@@ -29,14 +31,14 @@ public class CafedraWebController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    String deleteCafedra(@PathVariable("id") String id, Model model){
+    String deleteCafedra(@PathVariable("id") String id, Model model) {
         cafedraService.delete(id);
-        model.addAttribute("list",cafedraService.getAll());
+        model.addAttribute("list", cafedraService.getAll());
         return "redirect:/web/cafedra/list";
     }
 
     @RequestMapping(value = "/refresh", method = RequestMethod.GET)
-    String refreshCafedra(){
+    String refreshCafedra() {
         cafedraService.refresh();
         return "redirect:/web/cafedra/list";
     }
@@ -47,17 +49,23 @@ public class CafedraWebController {
         return "mytest";
     }*/
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    String createCafedra(){
-//        cafedraService.create();
-        return "redirect:/web/cafedra/list";
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createCafedra(Model model){
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createCafedra(Model model) {
         CafedraForm cafedraForm = new CafedraForm();
         model.addAttribute("cafedraForm", cafedraForm);
         return "addCafedra";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createCafedra(Model model, @ModelAttribute("cafedraForm") CafedraForm cafedraForm){
+        Cafedra cafedra = new Cafedra();
+        cafedra.setName(cafedraForm.getName());
+        cafedra.setDesc(cafedraForm.getDesc());
+        cafedra.setChief(cafedraForm.getChief());
+        cafedraService.create(cafedra);
+
+        model.addAttribute("cafedras", cafedraService.getAll());
+        return "redirect:/web/cafedra/list";
     }
 
 }
