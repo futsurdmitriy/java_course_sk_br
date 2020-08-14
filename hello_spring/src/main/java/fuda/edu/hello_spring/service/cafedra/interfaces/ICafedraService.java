@@ -6,5 +6,5 @@ import fuda.edu.hello_spring.service.IGenericService;
 import java.util.List;
 
 public interface ICafedraService extends IGenericService<Cafedra> {
-
+    List <Cafedra> searchByName(String name);
 }

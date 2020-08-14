@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CafedraServiceImpl implements ICafedraService {
@@ -64,5 +65,16 @@ public class CafedraServiceImpl implements ICafedraService {
         cafedraRepository.saveAll(dataFake.getCafedras());
         /*groupRepository.deleteAll();
         groupRepository.saveAll(dataFake.getGroups());*/
+    }
+
+//    @Override
+//    public void relatedDatabase() { dataFake.init();
+
+    @Override
+    public List<Cafedra> searchByName(String str) {
+        return this.getAll()
+                .stream()
+                .filter(item->item.getName().equals(str))
+                .collect(Collectors.toList());
     }
 }
