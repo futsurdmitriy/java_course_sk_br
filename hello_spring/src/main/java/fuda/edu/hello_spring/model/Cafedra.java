@@ -32,6 +32,15 @@ public class Cafedra {
         this.desc = desc;
     }
 
+    public Cafedra(String name, String chief, String desc,
+                   LocalDateTime createdAt, LocalDateTime modified) {
+        this.name = name;
+        this.chief = chief;
+        this.desc = desc;
+        this.createdAt = createdAt;
+        this.modified = modified;
+    }
+
     public Cafedra(String id, String name, String chief, String desc,
                    LocalDateTime createdAt, LocalDateTime modified) {
         this.id = id;
@@ -110,6 +119,17 @@ public class Cafedra {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public String toJSON() {
+        return "{" +
+                "\"id\"" + ":" + "\"" + this.getId() + "\"" +
+                ",\"name\"" + ":" + "\"" + this.getName() + "\"" +
+                ",\"desc\"" + ":" + "\"" + this.getDesc() + "\"" +
+                ",\"chief\"" + ":" +"\"" + this.getChief() + "\"" +
+                ",\"createdAt\"" + ":" +"\"" + this.getCreatedAt() + "\"" +
+                ",\"modified\"" + ":" +"\"" + this.getModified() + "\"" +
+                '}';
     }
 
 }

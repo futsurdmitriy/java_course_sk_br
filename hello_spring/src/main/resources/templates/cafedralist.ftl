@@ -7,40 +7,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-<#--<script>-->
-<#--    var request;-->
-<#--    function sendInfo()-->
-<#--    {-->
-<#--        var v=document.vinform.t1.value;-->
-<#--        var url="http://localhost:8080/web/cafedra/info/"+v;-->
-
-<#--        if(window.XMLHttpRequest){-->
-<#--            request=new XMLHttpRequest();-->
-<#--        }-->
-<#--        else if(window.ActiveXObject){-->
-<#--            request=new ActiveXObject("Microsoft.XMLHTTP");-->
-<#--        }-->
-
-<#--        try-->
-<#--        {-->
-<#--            request.onreadystatechange=getInfo;-->
-<#--            request.open("GET",url,true);-->
-<#--            request.send();-->
-<#--        }-->
-<#--        catch(e)-->
-<#--        {-->
-<#--            alert("Unable to connect to server");-->
-<#--        }-->
-<#--    }-->
-
-<#--    function getInfo(){-->
-<#--        if(request.readyState==4){-->
-<#--            var val=request.responseText;-->
-<#--            document.getElementById('amit').innerHTML=val;-->
-<#--        }-->
-<#--    }-->
-
-<#--</script>-->
+<script>
+    var request;
+    async function sendInfo(id) {
+        var url = "http://localhost:8080/web/cafedra/info/" + id;
+        const response = await fetch(url);
+        const jsonBody = await response.json();
+        document.getElementById("name").innerHTML = jsonBody.name;
+        document.getElementById("desc").innerHTML = jsonBody.desc;
+        document.getElementById("cheif").innerHTML = jsonBody.chief;
+        document.getElementById("created_at").innerHTML = jsonBody.createdAt;
+        document.getElementById("modified").innerHTML = jsonBody.modified;
+    }
+</script>
 <h1>Hello Frontend</h1>
     <div>
         <div style="text-align: right">
@@ -58,6 +37,7 @@
                 <th>Name</th>
                 <th>Description </th>
                 <th>Chief</th>
+                <th>Action</th>
             </tr>
             <#list list as item>
                 <tr>
@@ -65,19 +45,47 @@
                     <td>${item.name}</td>
                     <td>${item.desc}</td>
                     <td>${item.chief}</td>
-                    <td><a href="http://localhost:8080/web/cafedra/delete/${item.id}">
+                    <td>
+                        <a href="http://localhost:8080/web/cafedra/delete/${item.id}">
                             <input type="button" value="delete" class="btn-danger">
-                        </a> </td>
+                        </a>
+                        <a href="http://localhost:8080/web/cafedra/update/${item.id}">
+                            <input type="button" value="update" class="btn-warning">
+                        </a>
+                        <input type="button" value="info" class="btn-info" onclick="sendInfo('${item.id}')" />
+<#--                        <input type="button" value="update" class="btn-warning"/>-->
+                    </td>
                 </tr>
             </#list>
         </table>
         <br>
-        <form>
+        <br>
+        <div>
+            <h2>Object info</h2>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Description </th>
+                    <th>Chief</th>
+                    <th>Created At</th>
+                    <th>Modified</th>
+                </tr>
+                <tr>
+                    <td id="name"></td>
+                    <td id="desc"></td>
+                    <td id="cheif"></td>
+                    <td id="created_at"></td>
+                    <td id="modified"></td>
+                </tr>
+            </table>
+
+        </div>
+       <#-- <form>
             <input type="text" name="name" placeholder="name"><br>
             <input type="text" name="description" placeholder="description"><br>
             <input type="text" name="chief" placeholder="chief"><br>
             <input type="submit" value="Create">
-        </form>
+        </form>-->
     </div>
 </body>
 </html>

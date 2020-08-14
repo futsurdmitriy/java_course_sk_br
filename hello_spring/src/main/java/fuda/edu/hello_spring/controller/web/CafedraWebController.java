@@ -1,17 +1,17 @@
 package fuda.edu.hello_spring.controller.web;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import fuda.edu.hello_spring.datastorage.DataFake;
 import fuda.edu.hello_spring.form.CafedraForm;
 import fuda.edu.hello_spring.model.Cafedra;
 import fuda.edu.hello_spring.service.cafedra.impls.CafedraServiceImpl;
 import fuda.edu.hello_spring.service.cafedra.interfaces.ICafedraService;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/web/cafedra")
@@ -43,11 +43,15 @@ public class CafedraWebController {
         return "redirect:/web/cafedra/list";
     }
 
-   /* @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     String infoCafedra(@PathVariable("id") String id, Model model){
-        model.addAttribute("objectName", cafedraService.get(id).getName());
-        return "mytest";
-    }*/
+//        model.addAttribute("objectName", cafedraService.get(id).toJSON());
+        return cafedraService.get(id).toJSON();
+//        return "mytest";
+//        return JsonView.Render(model, response);
+//        cafedraService.get(id).getName().toJ;
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createCafedra(Model model) {
@@ -63,6 +67,30 @@ public class CafedraWebController {
         cafedra.setDesc(cafedraForm.getDesc());
         cafedra.setChief(cafedraForm.getChief());
         cafedraService.create(cafedra);
+
+        model.addAttribute("cafedras", cafedraService.getAll());
+        return "redirect:/web/cafedra/list";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateCafedra(@PathVariable("id") String id,Model model) {
+        Cafedra cafedra = cafedraService.get(id);
+        CafedraForm cafedraForm = new CafedraForm(
+                cafedra.getId(),
+                cafedra.getName(),
+                cafedra.getDesc(),
+                cafedra.getChief()
+        );
+        model.addAttribute("cafedraForm", cafedraForm);
+        return "updateCafedra";
+    }
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateCafedra(Model model,@PathVariable("id") String id, @ModelAttribute("cafedraForm") CafedraForm cafedraForm){
+        Cafedra cafedra = cafedraService.get(id);
+        cafedra.setName(cafedraForm.getName());
+        cafedra.setDesc(cafedraForm.getDesc());
+        cafedra.setChief(cafedraForm.getChief());
+        cafedraService.update(cafedra);
 
         model.addAttribute("cafedras", cafedraService.getAll());
         return "redirect:/web/cafedra/list";

@@ -17,6 +17,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>${object.name}</h1>
+<h1>${objectName}</h1>
 </body>
 </html>

@@ -1,13 +1,10 @@
 package fuda.edu.hello_spring.service.cafedra.interfaces;
 
 import fuda.edu.hello_spring.model.Cafedra;
+import fuda.edu.hello_spring.service.IGenericService;
 
 import java.util.List;
 
-public interface ICafedraService {
-    Cafedra create (Cafedra cafedra);
-    Cafedra get (String id);
-    Cafedra update (Cafedra cafedra);
-    Cafedra delete (String id);
-    List getAll ();
+public interface ICafedraService extends IGenericService<Cafedra> {
+
 }
